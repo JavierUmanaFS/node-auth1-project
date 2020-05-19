@@ -13,5 +13,9 @@ function restricted(req, res, next){
 router.use(restricted);
 
 router.get("/", (req, res) => {
-  
-})
+  Users.find()
+  .then(users => res.status(200).json({ data: users}))
+  .catch(error => res.status(404).json({ message: error.message}))
+});
+
+module.exports = router;
